@@ -8,6 +8,20 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
+from rest_framework import generics, permissions
+from .models import *
+from .serializers import *
+
+class BookList(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = BookSerializer
+
+class BookDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = BookSerializer
+
 # Create your views here.
 def homePage(request):
     if request.method == 'POST':
@@ -18,3 +32,8 @@ def homePage(request):
 def adminHomePage(request):
     return render(request, "adminhomepage.html", {})
 
+def test(request):
+    return render(request, "test.html", {})
+
+def exp(request):
+    return render(request, "exp.html", {})
