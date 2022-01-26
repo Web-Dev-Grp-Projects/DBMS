@@ -1,12 +1,16 @@
 // import '../expstyle.css'  assert { type: 'css' };
 import * as THREE from 'https://cdn.skypack.dev/three';
 // import { MapControls, OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { scroll } from './main1.js'
 
 const scene = new THREE.Scene();
+// scene.background = new THREE.Color(0xf3f3f3);
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
+  antialias: true
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -96,11 +100,13 @@ function scrollup() {
   camera.rotation.y = t * -0.0002;
 }
 
+function scrolldownwithout() {
+  globe.rotation.y -= 0.02;
+}
 // var CURRENT_SCROLL;
 // $('body').scroll(function() {
 //     CURRENT_SCROLL = $(this).scrollTop();
 // });
-
 
 
 // function scrollDetect(){
@@ -117,28 +123,41 @@ function scrollup() {
 //   };
 // }
 
+var scroll = 0;
+var lastScroll = 0;
 
+window.addEventListener("scroll", (event) => {
+  scroll = window.scrollY;
+  console.clear();
+  console.log("scroll: ", scroll)
+  if (scroll > 0 && lastScroll <= scroll && scroll < 400){
+    lastScroll = scroll;
+    scrolldown();
+  } else if(scroll > 0 && lastScroll <= scroll && scroll > 400 && scroll < 700){
+    lastScroll = scroll;
+  } else if(scroll > 0 && lastScroll <= scroll && scroll > 700){
+    lastScroll = scroll;
+    scrolldown();
+  }
+  else{
+    lastScroll = scroll;
+    scrollup();
+  }
+});
 
-
-function scrollDetect(){
-  var lastScroll = 0;
-
-  window.onscroll = function() {
-      let currentScroll = document.documentElement.scrollTop || document.body.scrollTop; // Get Current Scroll Value
-
-      if (currentScroll > 0 && lastScroll <= currentScroll){
-        lastScroll = currentScroll;
-        // document.getElementById("scrollLoc").innerHTML = "Scrolling DOWN";
-        scrolldown();
-      }else{
-        lastScroll = currentScroll;
-        // document.getElementById("scrollLoc").innerHTML = "Scrolling UP";
-        scrollup();
-      }
-  };
-}
-
-scrollDetect();
+// window.onscroll = function() {
+//   let currentScroll = document.documentElement.scrollTop || document.body.scrollTop; // Get Current Scroll Value
+//   console.log("currentScroll: ", currentScroll)
+//   if (currentScroll > 0 && lastScroll <= currentScroll){
+//     lastScroll = currentScroll;
+//     // document.getElementById("scrollLoc").innerHTML = "Scrolling DOWN";
+//     scrolldown();
+//   }else{
+//     lastScroll = currentScroll;
+//     // document.getElementById("scrollLoc").innerHTML = "Scrolling UP";
+//     scrollup();
+//   }
+// };
 
 moveCamera();
 
