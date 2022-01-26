@@ -21,11 +21,15 @@ from django.views.generic import  TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homePage),
+    path('authenticate/',userauthenticate),
+    path('signupuser/',signupuser),
     path('adminhomepage/', adminHomePage),
+    path('login/', login),
     path('test.html', test),
     path('login/', loginPage),
     path('exp/',exp),
     path('books/', BookList.as_view()),
     path('books/<int:pk>', BookDetail.as_view()),
+
     # path('aa/',TemplateView.as_view(template_name = 'index1.html')),
 ]
