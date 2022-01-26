@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background: #000000;
+    background: #f1b379;
 }
 
 input,
@@ -28,9 +28,11 @@ button {
 .cont {
     overflow: hidden;
     position: relative;
+
     width: 900px;
     height: 550px;
     margin: 0 auto 100px;
+    border-radius: 50px;
     background: #fff;
 }
 
@@ -226,11 +228,16 @@ input {
     color: #cfcfcf;
 }
 
-.submit {
+.button1 {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #d4af7a;
+    background: #fc8f00;
     text-transform: uppercase;
+}
+
+.button1:hover {
+    background-color: #fa8f03;
+    color: white;
 }
 
 .fb-btn {
