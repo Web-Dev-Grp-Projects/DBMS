@@ -1,9 +1,8 @@
 from django.http import request
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 # "python.analysis.extraPaths": ["C:/Users/adity/Desktop/Aditya/webdev/dbms/Home/views.py"]
 from django.contrib import messages
-from django.shortcuts import redirect, render
 from django.http import FileResponse
 import io
 from reportlab.pdfgen import canvas
@@ -34,7 +33,7 @@ def homePage(request):
 def adminHomePage(request):
     return render(request, "adminhomepage.html", {})
 
-def login(request):
+def loginPage(request):
     return render(request, "login.html", {})
 
 def test(request):
