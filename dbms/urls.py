@@ -23,6 +23,7 @@ urlpatterns = [
     path('', homePage),
     path('adminhomepage/', adminHomePage),
     path('test.html', test),
+    path('login/', loginPage),
     path('exp/',exp),
     path('books/', BookList.as_view()),
     path('books/<int:pk>', BookDetail.as_view()),
