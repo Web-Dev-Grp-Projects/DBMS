@@ -26,7 +26,7 @@ urlpatterns = [
     path('adminhomepage/', adminHomePage),
     path('login/', login),
     path('test.html', test),
-    path('login/', loginPage),
+    path('login/', login),
     path('exp/',exp),
     path('books/', BookList.as_view()),
     path('books/<int:pk>', BookDetail.as_view()),
