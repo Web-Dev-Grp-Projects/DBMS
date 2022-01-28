@@ -39,9 +39,6 @@ def loginPage(request):
 def test(request):
     return render(request, "test.html", {})
 
-def exp(request):
-    return render(request, "exp.html", {})
-
 def userauthenticate(request):
     username = request.POST['username']
     password = request.POST['password']
