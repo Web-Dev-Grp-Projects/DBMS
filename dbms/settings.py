@@ -27,7 +27,7 @@ SECRET_KEY = 'mvcyu41om+i5jd*h)#ta+-&z+kvhfy9b3lhgq_-8^$+9-f1qzy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['murmuring-refuge-91578.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['https://vaccineregistration.herokuapp.com/', '127.0.0.1:8000']
 
 
 # Application definition
