@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.conf.urls import include 
 from django.urls import path
 from Home.views import *
 from django.views.generic import  TemplateView
@@ -29,6 +31,7 @@ urlpatterns = [
     path('exp/',exp),
     path('books/', BookList.as_view()),
     path('books/<int:pk>', BookDetail.as_view()),
+    path('^', include('django.contrib.auth.urls')),
 
     # path('aa/',TemplateView.as_view(template_name = 'index1.html')),
 ]
