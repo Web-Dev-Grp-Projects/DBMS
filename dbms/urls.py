@@ -28,8 +28,6 @@ urlpatterns = [
     path('adminhomepage/', adminHomePage),
     path('test.html', test),
     path('login/', loginPage),
-    path('books/', BookList.as_view()),
-    path('books/<int:pk>', BookDetail.as_view()),
     path('^', include('django.contrib.auth.urls')),
 
     # path('aa/',TemplateView.as_view(template_name = 'index1.html')),

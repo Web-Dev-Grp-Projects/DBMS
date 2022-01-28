@@ -4,24 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 # "python.analysis.extraPaths": ["C:/Users/adity/Desktop/Aditya/webdev/dbms/Home/views.py"]
 from django.contrib import messages
 from django.http import FileResponse
-import io
-from reportlab.pdfgen import canvas
+# import io
+# from reportlab.pdfgen import canvas
 from django.contrib.auth.models import User
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
-from rest_framework import generics, permissions
-from rest_framework_jwt import *
-from .serializers import *
-
-class BookList(generics.ListCreateAPIView):
-    queryset = Book.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = BookSerializer
-
-class BookDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = BookSerializer
+# from reportlab.lib.units import inch
+# from reportlab.lib.pagesizes import letter
 
 # Create your views here.
 def homePage(request):
