@@ -112,6 +112,28 @@ function more() {
   atmosphere.scale.set(1.1, 1.1, 1.1);
   // scene.add(atmosphere);
 
+
+  var obj = new THREE.Mesh(
+    new THREE.SphereGeometry(0.03, 50, 50), new THREE.MeshBasicMaterial({color: 0xff0000})
+  )
+
+  scene.add(obj);
+
+  var lat = 15.6677 * Math.PI/180;
+  var long = -96.5545 * Math.PI/180;
+  var r = 10;
+
+  var x = Math.cos(lat) * Math.cos(long) * r;
+  var y = Math.sin(lat) * r;
+  var z = Math.cos(lat) * Math.sin(long) * r;
+
+  // gs.rotation.set(0.0, -lonRad, latRad - Math.PI * 0.5);
+
+  obj.position.set(x, y, z);
+
+
+
+
   const t = document.body.getBoundingClientRect().top;
   //   globe.rotation.x += 0.05;
   //   globe.rotation.z += 0.05;
