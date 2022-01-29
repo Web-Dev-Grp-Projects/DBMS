@@ -1,6 +1,8 @@
-varying vec3 vertexNormal;
+varying vec3 vPositionW;
+varying vec3 vNormalW;
 
-void main(){
-    vertexNormal = normalize(normalMatrix * normal);
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.9); // not 1.0?
+void main() {
+    vPositionW = vec3( vec4( position, 1.0 ) * modelMatrix);
+    vNormalW = normalize( vec3( vec4( normal, 0.0 ) * modelMatrix ) );
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 }

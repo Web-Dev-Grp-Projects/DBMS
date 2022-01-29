@@ -1,6 +1,10 @@
-varying vec3 vertexNormal;
+varying vec3 vPositionW;
+varying vec3 vNormalW;
 
-void main(){
-    float intensity = pow(0.5 - dot(vertexNormal, vec3(0, 0, 1.0)), 2.0);
-    gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+void main() {
+    vec3 color = vec3(0.3, .6, 1.);
+    vec3 viewDirectionW = normalize(cameraPosition - vPositionW);
+    float fresnelTerm = dot(viewDirectionW, vNormalW);
+    fresnelTerm = pow(0.5-fresnelTerm, 0.5);
+    gl_FragColor = vec4( color, fresnelTerm);
 }

@@ -1,5 +1,6 @@
 window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
+  init();
 });
 
 "use strict";
@@ -11,10 +12,8 @@ $(window).on('load', function () {
 // import '../expstyle.css'  assert { type: 'css' };
 import * as THREE from 'https://cdn.skypack.dev/three';
 // import { MapControls, OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe;
+var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe, atmosphere, v1;
 var loader = new THREE.FileLoader();
-
-init();
 
 function init(){
   scene = new THREE.Scene();
@@ -90,42 +89,48 @@ function more() {
     })
   );
   globe.position.z = -5;
-  globe.position.y = -1;
-  globe.position.setX(-5);
+  globe.position.y = -4;
+  globe.position.setX(-10); // -5 initial
+  v1 = new THREE.Vector3(-10, -4, -5);
+
   scene.add(globe);
 
   // Creating atmosphere
-  const atmosphere = new THREE.Mesh(
+  atmosphere = new THREE.Mesh(
     new THREE.SphereGeometry(3.5, 50, 50),
     new THREE.ShaderMaterial({
       vertexShader: atmosphereVShader,
       fragmentShader: atmosphereFShader,
+      transparent: true,
       blending: THREE.AdditiveBlending,
       side: THREE.BackSide
     })
   );
   atmosphere.position.z = -5;
-  atmosphere.position.y = -1;
-  atmosphere.position.setX(-5);
+  atmosphere.position.y = -4;
+  atmosphere.position.setX(-10);
   atmosphere.scale.set(1.1, 1.1, 1.1);
-  scene.add(atmosphere);
+  // scene.add(atmosphere);
 
-  function moveCamera() {
-    const t = document.body.getBoundingClientRect().top;
-    //   globe.rotation.x += 0.05;
+  const t = document.body.getBoundingClientRect().top;
+  //   globe.rotation.x += 0.05;
+  //   globe.rotation.z += 0.05;
+  globe.rotation.y -= 0.02;
+  atmosphere.rotation.y -= 0.02; 
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.rotation.y = t * -0.0002; 
     
-    globe.rotation.y -= 0.02;
-    atmosphere.rotation.y -= 0.02;   
-
-    //   globe.rotation.z += 0.05;
-    // globe.rotation.y += 0.02;
-    camera.position.z = t * -0.01;
-    camera.position.x = t * -0.0002;
-    camera.rotation.y = t * -0.0002;
+  function rotgr700(){
+    globe.rotation.y += 0.02;
   }
-  
-  // document.body.onscroll = moveCamera; // DOUBT IN THIS
-  
+
+  function rotgr1500(){
+    globe.rotation.y -= 0.02;
+    // globe.rotation.x -= 0.01;
+  }
+
   function scrolldown() {
     const t = document.body.getBoundingClientRect().top;
   
@@ -147,7 +152,16 @@ function more() {
     camera.position.x = t * -0.0002;
     camera.rotation.y = t * -0.0002;
   }
-  
+
+  function scrollup15() {  
+    globe.rotation.y += 0.02;
+    // atmosphere.rotation.y += 0.02;
+  }
+  function scrollup7() {  
+    globe.rotation.y -= 0.02;
+    // atmosphere.rotation.y += 0.02;
+  }
+
   function scrolldownwithout() {
     globe.rotation.y -= 0.02;
     atmosphere.rotation.y -= 0.02;
@@ -160,28 +174,44 @@ function more() {
     scroll = window.scrollY;
     console.clear();
     console.log("scroll: ", scroll)
-    if (scroll > 0 && lastScroll <= scroll && scroll < 280){ // do 320 and check
+    if (scroll > 0 && lastScroll <= scroll && scroll <= 280){
       lastScroll = scroll;
       scrolldown();
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 280 && scroll < 700){
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 280 && scroll <= 700){
       lastScroll = scroll;
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700){
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll <= 1100){
       lastScroll = scroll;
-      scrolldown();
-    }
-    else{
+      rotgr700();
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 1100 && scroll <= 1500){
+      lastScroll = scroll;
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 1500){
+      lastScroll = scroll;
+      rotgr1500();
+    } else if(scroll > 0 && lastScroll >= scroll && scroll > 1500){
+      lastScroll = scroll;
+      scrollup15();
+    } else if(scroll > 0 && lastScroll >= scroll && scroll > 1100 && scroll <= 1500){
+      lastScroll = scroll;
+    } else if(scroll > 0 && lastScroll >= scroll && scroll > 700 && scroll <= 1100){
+      lastScroll = scroll;
+      scrollup7();
+    } else if(scroll > 0 && lastScroll >= scroll && scroll > 280 && scroll <= 700){
+      lastScroll = scroll;
+    } else{
       lastScroll = scroll;
       scrollup();
     }
   });
-  
-  moveCamera();
   
   animate();
 }
 
 function animate() {
   requestAnimationFrame(animate);
-
+  const v2 = new THREE.Vector3(-5, -1, -5);
+  globe.position.lerp(v2, 0.01);
+  // globe.setFromEuler.rotation.lerp(v2, 0.01);
+  // globe.quaternion.slerp(v1, v2, 0.01);
+  atmosphere.position.lerp(v2, 0.01);
   renderer.render(scene, camera);
 }
