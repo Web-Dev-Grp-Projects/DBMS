@@ -265,7 +265,7 @@ function more() {
 function animate() {
   requestAnimationFrame(animate);
   // 400 < window.pageYOffset < 600
-  const currentTimeline = 400 < (window.pageYOffset / 6000) < 600;
+  // const currentTimeline = 400 < (window.pageYOffset) &&  (window.pageYOffset)< 600;
   const rx = currentTimeline * Math.PI * 2;
   const ry = currentTimeline * Math.PI * 2;
   
