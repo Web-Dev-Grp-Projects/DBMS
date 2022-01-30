@@ -2,7 +2,15 @@ window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
   init();
 });
+function showText(id, delay){
+  var elem=document.getElementById(id);
+  setTimeout(function(){elem.style.visibility='visible';},delay*1000)
+}
 
+window.onload = function(){
+showText('header', 1);
+// showText('delayedText2',0.8);
+}
 "use strict";
 
 $(window).on('load', function () {
@@ -12,7 +20,7 @@ $(window).on('load', function () {
 // import '../expstyle.css'  assert { type: 'css' };
 import * as THREE from 'https://cdn.skypack.dev/three';
 // import { MapControls, OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe, atmosphere, v1;
+var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe, atmosphere, v1, x, y, z;
 var loader = new THREE.FileLoader();
 
 function init(){
@@ -72,7 +80,8 @@ function more() {
 
   const stars = new THREE.Points(starGeometry, starMaterial)
   scene.add(stars)
-
+  stars.velocity = 0;
+  stars.acceleration = 0.02;
   // const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
   // Creating globe and adding to scene.
@@ -112,32 +121,44 @@ function more() {
   atmosphere.scale.set(1.1, 1.1, 1.1);
   // scene.add(atmosphere);
 
+  function coord(lat, long){
+    var latRad = lat * Math.PI/180;
+    var longRad = -long * Math.PI/180; // takes both E and W into account
+    var r = 3.5;
 
-  var obj = new THREE.Mesh(
-    new THREE.SphereGeometry(0.03, 50, 50), new THREE.MeshBasicMaterial({color: 0xff0000})
-  )
+    x = Math.cos(latRad) * Math.cos(longRad) * r;
+    y = Math.sin(latRad) * r;
+    z = Math.cos(latRad) * Math.sin(longRad) * r;
+    // return [x, y, z];
+    return {x, y, z};
+  }
 
-  scene.add(obj);
-
-  var lat = 15.6677 * Math.PI/180;
-  var long = -96.5545 * Math.PI/180;
-  var r = 10;
-
-  var x = Math.cos(lat) * Math.cos(long) * r;
-  var y = Math.sin(lat) * r;
-  var z = Math.cos(lat) * Math.sin(long) * r;
-
+  function addPoints(lat, long){
+    var point = new THREE.Mesh(
+      new THREE.SphereGeometry(0.03, 50, 50), new THREE.MeshBasicMaterial({color: 0x00ff00})
+    )
+    // const [x, y, z] = Array(3).fill().map(()=>coord(7.9465, 1.0232));
+    let {x, y, z} = coord(lat, long);
+    point.position.set(x, y, z);
+    globe.add(point);
+  }
   // gs.rotation.set(0.0, -lonRad, latRad - Math.PI * 0.5);
 
-  obj.position.set(x, y, z);
+  // var phi = (90 - lat) * (Math.PI / 180);
+  // var theta = (long + 180) * (Math.PI / 180);
+  // point.position.x = -(Math.sin(phi)*Math.cos(theta));
+  // point.position.z = (Math.sin(phi)*Math.sin(theta));
+  // point.position.y = Math.cos(phi);
+  
+  
 
-
-
+  // addPoints(7.9465, 1.0232);
+  // 7.9465, 1.0232
 
   const t = document.body.getBoundingClientRect().top;
   //   globe.rotation.x += 0.05;
   //   globe.rotation.z += 0.05;
-  globe.rotation.y -= 0.02;
+  globe.rotation.y -= 0.02; // 1.4
   atmosphere.rotation.y -= 0.02; 
 
   camera.position.z = t * -0.01;
@@ -145,12 +166,24 @@ function more() {
   camera.rotation.y = t * -0.0002; 
     
   function rotgr700(){
-    globe.rotation.y += 0.02;
+    globe.rotation.y -= 0.02;
+    // globe.rotation.x += 0.002;
+  }
+
+  function india(){
+    var coordinates = [11.059821, 78.387451, 17.123184, 79.208824, 23.473324, 77.947998, 29.238478, 76.431885, 21.295132, 81.828232, 
+      29.065773, 76.040497, 25.794033, 78.116531, 19.601194, 75.552979, 23.745127, 91.746826, 17.874857,78.100815, 15.317277, 
+      75.71389, 10.850516,76.27108, 28.207609, 79.82666, 26.244156, 92.537842, 19.66328, 75.300293, 11.127123, 78.656891, 
+      15.317277, 75.71389, 22.978624, 87.747803, 22.309425, 72.13623, 20.94092, 84.803467, 27.391277, 73.432617, 32.084206, 77.571167]
+  
+    for (let i = 0; i < coordinates.length-1; i+=2) {
+      addPoints(coordinates[i], coordinates[i+1]);
+    }
   }
 
   function rotgr1500(){
     globe.rotation.y -= 0.02;
-    // globe.rotation.x -= 0.01;
+    // globe.rotation.x -= 0.02;
   }
 
   function scrolldown() {
@@ -180,7 +213,7 @@ function more() {
     // atmosphere.rotation.y += 0.02;
   }
   function scrollup7() {  
-    globe.rotation.y -= 0.02;
+    globe.rotation.y += 0.02;
     // atmosphere.rotation.y += 0.02;
   }
 
@@ -201,11 +234,12 @@ function more() {
       scrolldown();
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 280 && scroll <= 700){
       lastScroll = scroll;
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll <= 1100){
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll <= 1000){
       lastScroll = scroll;
       rotgr700();
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 1100 && scroll <= 1500){
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 1000 && scroll <= 1500){
       lastScroll = scroll;
+      india();
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 1500){
       lastScroll = scroll;
       rotgr1500();
@@ -230,6 +264,24 @@ function more() {
 
 function animate() {
   requestAnimationFrame(animate);
+
+  const currentTimeline = window.pageYOffset / 6000;
+  const rx = currentTimeline * Math.PI * 2;
+  const ry = currentTimeline * Math.PI * 2;
+  
+  // globe.rotation.set(0, ry, 0);
+
+  // starGeo.vertices.forEach(p => {
+  //   p.velocity += p.acceleration
+  //   p.y -= p.velocity;
+    
+  //   if (p.y < -200) {
+  //     p.y = 200;
+  //     p.velocity = 0;
+  //   }
+  // });
+  // starGeo.verticesNeedUpdate = true; 
+
   const v2 = new THREE.Vector3(-5, -1, -5);
   globe.position.lerp(v2, 0.01);
   // globe.setFromEuler.rotation.lerp(v2, 0.01);

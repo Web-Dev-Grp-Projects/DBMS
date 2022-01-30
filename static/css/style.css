@@ -145,6 +145,7 @@
   }
   body{
     background-color: #f6f6f6;
+    min-height: calc(6000px + 100vh);
   }
   
   :root {
@@ -189,9 +190,32 @@
       grid-column: 7 / span 5; /*  earlier 2 / 5*/
       font-size: 2.5rem;
       padding: 2rem;
+      /* position: absolute;
+      top: 10%;
+      left: 29%; */
       margin-bottom: var(--spacing);
+      visibility:hidden;
+      animation-delay:1s;
+      animation-fill-mode: forwards;
+      animation: fadeIn4 4s;
     }
-  
+    
+    .center {
+      position: absolute;
+      top: 20%;
+      left: 29%;
+      animation-name: welcome;
+      animation-duration: 2s;
+    }
+    
+    @keyframes fadeIn4 {
+      0% {opacity:0;}
+      100% {opacity:1;}
+      from {top: 10%;}
+      to {top: 20%;}
+    }
+
+
     section {
       grid-column: 10 / 12; /*  earlier 2 / 8*/
       padding: 1rem;
