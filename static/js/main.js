@@ -264,12 +264,12 @@ function more() {
 
 function animate() {
   requestAnimationFrame(animate);
-
-  const currentTimeline = window.pageYOffset / 6000;
+  // 400 < window.pageYOffset < 600
+  const currentTimeline = 400 < (window.pageYOffset / 6000) < 600;
   const rx = currentTimeline * Math.PI * 2;
   const ry = currentTimeline * Math.PI * 2;
   
-  // globe.rotation.set(0, ry, 0);
+  globe.rotation.set(0, ry, 0);
 
   // starGeo.vertices.forEach(p => {
   //   p.velocity += p.acceleration
