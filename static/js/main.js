@@ -21,6 +21,7 @@ $(window).on('load', function () {
 import * as THREE from 'https://cdn.skypack.dev/three';
 // import { MapControls, OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe, atmosphere, v1, x, y, z;
+var currentScroll, totalScroll;
 var loader = new THREE.FileLoader();
 
 function init(){
@@ -165,8 +166,8 @@ function more() {
   camera.position.x = t * -0.0002;
   camera.rotation.y = t * -0.0002; 
     
-  function rotgr700(){
-    globe.rotation.y -= 0.02;
+  function rotgr700(currentScroll, totalScroll){
+    globe.rotation.y -= Math.PI * 2 / (currentScroll / totalScroll);
     // globe.rotation.x += 0.002;
   }
 
@@ -234,10 +235,12 @@ function more() {
       scrolldown();
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 280 && scroll <= 700){
       lastScroll = scroll;
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll <= 1000){
+    } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll < 1000){
       lastScroll = scroll;
-      rotgr700();
-    } else if(scroll > 0 && lastScroll <= scroll && scroll > 1000 && scroll <= 1500){
+      currentScroll = 1000 - scroll;
+      totalScroll = 300;
+      rotgr700(currentScroll, totalScroll);
+    } else if(scroll > 0 && lastScroll <= scroll && scroll >= 1000 && scroll <= 1500){
       lastScroll = scroll;
       india();
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 1500){
