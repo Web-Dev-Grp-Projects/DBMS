@@ -21,7 +21,7 @@ $(window).on('load', function () {
 import * as THREE from 'https://cdn.skypack.dev/three';
 // import { MapControls, OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 var renderer, vShader, fShader, camera, scene, atmosphereVShader, atmosphereFShader, globe, atmosphere, v1, x, y, z;
-var currentScroll, totalScroll;
+var currentScroll = 0, totalScroll;
 var loader = new THREE.FileLoader();
 
 function init(){
@@ -159,15 +159,19 @@ function more() {
   const t = document.body.getBoundingClientRect().top;
   //   globe.rotation.x += 0.05;
   //   globe.rotation.z += 0.05;
-  globe.rotation.y -= 0.02; // 1.4
-  atmosphere.rotation.y -= 0.02; 
+  // globe.rotation.y -= 0.02; // 1.4
+  totalScroll = 280;
+  globe.rotation.y = Math.PI * currentScroll / totalScroll;
+
+  atmosphere.rotation.y -= 0.02;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
   camera.rotation.y = t * -0.0002; 
-    
+  
   function rotgr700(currentScroll, totalScroll){
-    globe.rotation.y -= Math.PI * 2 / (currentScroll / totalScroll);
+    globe.rotation.y = Math.PI * currentScroll / totalScroll;
+    console.log(globe.rotation.y);
     // globe.rotation.x += 0.002;
   }
 
@@ -187,10 +191,11 @@ function more() {
     // globe.rotation.x -= 0.02;
   }
 
-  function scrolldown() {
+  function scrolldown(currentScroll, totalScroll) {
     const t = document.body.getBoundingClientRect().top;
   
-    globe.rotation.y -= 0.02;
+    // globe.rotation.y -= 0.02;
+    globe.rotation.y = Math.PI * currentScroll / totalScroll;
     atmosphere.rotation.y -= 0.02;
 
     camera.position.z = t * -0.01;
@@ -232,7 +237,9 @@ function more() {
     console.log("scroll: ", scroll)
     if (scroll > 0 && lastScroll <= scroll && scroll <= 280){
       lastScroll = scroll;
-      scrolldown();
+      currentScroll = 280 - scroll;
+      totalScroll = 280;
+      scrolldown(currentScroll, totalScroll);
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 280 && scroll <= 700){
       lastScroll = scroll;
     } else if(scroll > 0 && lastScroll <= scroll && scroll > 700 && scroll < 1000){
