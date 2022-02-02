@@ -65,3 +65,6 @@ def signupuser(request):
 def vaccineDetails(request):
     context = {'vaccineDet':VaccineCenterDetails.objects.all()}
     return render(request, 'display.html', context)
+
+def form(request):
+    return render(request, 'form.html')

@@ -27,6 +27,7 @@ urlpatterns = [
     path('authenticate/', userauthenticate),
     path('signupuser/', signupuser),
     path('adminhomepage/', adminHomePage),
+    path('form/', form),
     path('test.html', test),
     path('login/', loginPage),
     # path('hotels/<int:hotelp>/',specifichotel),
