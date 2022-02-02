@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 class Book(models.Model):
@@ -12,3 +13,21 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+class VaccineCenterDetails(models.Model):
+    Center_Id = models.IntegerField(primary_key = True)
+    pin_code = models.IntegerField()
+    VaccineCenterName = models.CharField(max_length = 255)
+    address = models.CharField(max_length = 255)
+
+    def __str__(self):
+        return self.VaccineCenterName
+
+class VaccineDetails(models.Model):
+    Vaccine_ID = models.IntegerField(primary_key = True)
+    Center_Id = models.ForeignKey(VaccineCenterDetails, on_delete = models.CASCADE)
+    type_of_vaccine = models.CharField(max_length = 255)
+    availability = models.IntegerField()
+    address = models.CharField(max_length = 255)
+
+    def __str__(self):
+            return self.type_of_vaccine

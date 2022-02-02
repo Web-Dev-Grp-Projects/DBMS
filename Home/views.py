@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 # from reportlab.lib.units import inch
 # from reportlab.lib.pagesizes import letter
 
+from Home.models import *
+
 # Create your views here.
 def homePage(request):
     if request.method == 'POST':
@@ -60,3 +62,6 @@ def signupuser(request):
 
     return redirect(homePage)
 
+def vaccineDetails(request):
+    context = {'vaccineDet':VaccineCenterDetails.objects.all()}
+    return render(request, 'display.html', context)

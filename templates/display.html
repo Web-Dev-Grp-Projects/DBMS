@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+  Vaccine Details
+{% endblock %}
+
+{% block content %}
+<a href="/">Home</a>
+
+{% for vaccine in vaccineDet %}
+
+<h2>{{vaccine.VaccineCenterName}}</h2>
+<h2>{{vaccine.Center_Id}}</h2>
+<h2>{{vaccine.pin_code}}</h2>
+<h2>{{vaccine.address}}</h2>
+
+{% endfor %}
+
+{% endblock %}
