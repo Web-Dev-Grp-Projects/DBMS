@@ -37,6 +37,13 @@ def test(request):
 def form(request):
     return render(request, "form.html", {})
 
+def customerwelcome(request):
+    if not request.user.is_authenticated:
+        return redirect(homePage)
+
+    username = request.user.username
+    context = {'username':username, 'hotels': VaccineCenterDetails.objects.all()}
+    return render(request,'customerwelcome.html',context)
 
 def userauthenticate(request):
     username = request.POST['username']
@@ -47,7 +54,7 @@ def userauthenticate(request):
     if user is not None:
         login(request, user)
         messages.add_message(request, messages.ERROR, "You are logged in")
-        return redirect(homePage)
+        return redirect(customerwelcome)
 
     if user is None:
         messages.add_message(request, messages.ERROR, "Invalid Credentials")
@@ -62,23 +69,21 @@ def signupuser(request):
     # checking various conditions before signing up the user
     if password == repass:
         if User.objects.filter(username=username).exists():
-            messages.add_message(request, messages.ERROR,
-                                 "User already exists")
+            messages.add_message(request, messages.ERROR, "User already exists")
             return redirect(homePage)
 
         User.objects.create_user(username=username, password=password).save()
-        messages.add_message(request, messages.SUCCESS,
-                             "User Successfully created")
+        messages.add_message(request, messages.SUCCESS, "User Successfully created")
 
     else:
         messages.add_message(request, messages.ERROR, "Password do not match")
 
     return redirect(homePage)
 
+def logoutuser(request):
+    logout(request) # logging out the user
+    return redirect(homePage)
 
 def vaccineDetails(request):
     context = {'vaccineDet':VaccineCenterDetails.objects.all()}
     return render(request, 'display.html', context)
-
-def form(request):
-    return render(request, 'form.html')
