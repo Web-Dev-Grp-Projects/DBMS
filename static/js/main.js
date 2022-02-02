@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $(this).scrollTop(0);
+});
+
 window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
   init();
@@ -122,6 +126,14 @@ function more() {
   atmosphere.scale.set(1.1, 1.1, 1.1);
   // scene.add(atmosphere);
 
+  function onWindowResize() {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+  
+    renderer.setSize(innerWidth, innerHeight);
+  }
+  window.addEventListener("resize", onWindowResize);
+  
   function coord(lat, long){
     var latRad = lat * Math.PI/180;
     var longRad = -long * Math.PI/180; // takes both E and W into account
