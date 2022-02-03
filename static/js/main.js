@@ -173,6 +173,7 @@ function more() {
   //   globe.rotation.z += 0.05;
   // globe.rotation.y -= 0.02; // 1.4
   totalScroll = 280;
+  currentScroll = 280;
   globe.rotation.y = Math.PI * currentScroll / totalScroll;
 
   atmosphere.rotation.y -= 0.02;
@@ -281,6 +282,10 @@ function more() {
     }
   });
   
+  if(window.innerWidth < 600){
+    camera.position.z = 10;
+  }
+
   animate();
 }
 

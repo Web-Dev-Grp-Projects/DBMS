@@ -25,10 +25,9 @@ button {
     text-align: center;
 }
 
-.cont {
+.cont { /* for the box */
     overflow: hidden;
     position: relative;
-
     width: 900px;
     height: 550px;
     margin: 0 auto 100px;
@@ -284,3 +283,56 @@ input {
     left: auto;
     right: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+
+    h2 {
+        width: 100%;
+        font-size: 26px;
+        text-align: center;
+    }
+    label {
+        display: block;
+        width: 260px;
+        /* margin: 25px auto 0; */
+        text-align: left;
+    }
+    .cont {
+        overflow: hidden;
+        position: relative;
+    
+        width: 400px;
+        height: 480px;
+        margin: 0 auto 100px;
+        border-radius: 50px;
+        background: #fff;
+    }
+    
+    .form {
+        position: relative;
+        width: 640px;
+        height: 100%;
+        transition: transform 1.2s ease-in-out;
+        padding: 50px 30px 0;
+    }
+    
+    .sub-cont {
+        overflow: hidden;
+        position: absolute;
+        left: 640px;
+        top: 0;
+        width: 900px;
+        height: 100%;
+        padding-left: 260px;
+        background: #fff;
+        transition: transform 1.2s ease-in-out;
+    }
+    
+    .cont.s--signup .sub-cont {
+        transform: translate3d(-640px, 0, 0);
+    }
+    
+  }

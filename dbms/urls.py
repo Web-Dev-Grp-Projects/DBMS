@@ -29,12 +29,15 @@ urlpatterns = [
     path('adminhomepage/', adminHomePage),
     path('form/', form),
     path('test.html', test),
-    path('customerwelcome/',customerwelcome),
+    path('customerwelcome/', customerwelcome),
     path('login/', loginPage),
     path('logoutuser/', logoutuser),
     # path('hotels/<int:hotelp>/',specifichotel),
     path('vaccine/', vaccineDetails),
     path('form/', form),
+    path('pdf/', pdf),
+    path('userbookings/', userbooking),
+    
     path("password-reset/", auth_views.PasswordResetView.as_view(
         template_name="registration/password_reset.html"), name="password_reset"),
 
