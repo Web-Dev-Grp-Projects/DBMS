@@ -3,3 +3,5 @@ gunicorn
 django-heroku
 pillow
 whitenoise
+reportlab
+psycopg2

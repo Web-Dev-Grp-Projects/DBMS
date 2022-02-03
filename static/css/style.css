@@ -203,7 +203,7 @@
     }
 
     section {
-      grid-column: 10 / 12; /*  earlier 2 / 8*/
+      grid-column: 8 / 12; /*  earlier 2 / 8   -->  10/ 12*/
       padding: 1rem;
       background: var(--dark-bg);
       font-size: 1.25rem;
