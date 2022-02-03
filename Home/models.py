@@ -24,10 +24,18 @@ class VaccineCenterDetails(models.Model):
 
 class VaccineDetails(models.Model):
     Vaccine_ID = models.IntegerField(primary_key = True)
-    Center_Id = models.ForeignKey(VaccineCenterDetails, on_delete = models.CASCADE)
+    Center = models.ForeignKey(VaccineCenterDetails, on_delete = models.CASCADE)
     type_of_vaccine = models.CharField(max_length = 255)
     availability = models.IntegerField()
-    address = models.CharField(max_length = 255)
-
+ 
     def __str__(self):
             return self.type_of_vaccine
+
+class BookingDetails(models.Model):
+    username = models.CharField(max_length=255)
+    aadhar = models.IntegerField()
+    name = models.CharField(max_length = 255)
+    # vaccine = models.ForeignKey(VaccineDetails, on_delete = models.CASCADE)
+    vaccine = models.IntegerField()
+    status = models.BooleanField(default = False)
+    date = models.DateField()

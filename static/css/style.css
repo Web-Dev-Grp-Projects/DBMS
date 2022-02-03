@@ -241,7 +241,7 @@
         position: absolute;
         width: 100%;
         margin: 0px auto;
-        padding: 70px 0px;
+        padding: 70px 0px;  /*  use ? */
         
         display: grid;
         grid-template-columns: repeat(12, 1fr);

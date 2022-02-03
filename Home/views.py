@@ -22,9 +22,6 @@ def adminHomePage(request):
 def loginPage(request):
     return render(request, "login.html", {})
 
-def test(request):
-    return render(request, "test.html", {})
-
 def form(request):
     return render(request, "form.html", {})
 
@@ -33,6 +30,7 @@ def customerwelcome(request):
         return redirect(homePage)
 
     username = request.user.username
+    print("A", username)
     context = {'username': username, 'hotels': VaccineCenterDetails.objects.all()}
     return render(request, 'customerwelcome.html', context)
 
@@ -75,13 +73,45 @@ def logoutuser(request):
     return redirect(homePage)
 
 def vaccineDetails(request):
-    context = {'vaccineDet':VaccineCenterDetails.objects.all()}
+    context = {'vaccineDet':VaccineDetails.objects.all()}
     return render(request, 'display.html', context)
 
+def book(request, bookp):
+    vaccineid = bookp
+    username = request
+    context = {'vaccineid': vaccineid, 'username': username}
+    return render(request, "form.html", context)
+
+def bookingdone(request):
+    username = request.user.username
+    print(username)
+    aadhar = request.POST['aadhar_number']
+    name = request.POST['Name']
+    date = request.POST['date']
+    vaccine = request.POST['vaccineid']
+
+    info = VaccineDetails.objects.get(Vaccine_ID = vaccine)
+    info.availability = info.availability - 1
+    info.save()
+
+    # for hotel in VaccineDetails.objects.filter(id=vaccine):
+    #     name = hotel.name
+
+    # VaccineDetails(availability = availability - 1)
+
+    BookingDetails(username = username, aadhar = aadhar, name = name, date = date, vaccine = vaccine)
+    messages.add_message(request, messages.SUCCESS,'Vaccine Booked Successfully')
+    return redirect(customerwelcome)
+
 def userbooking(request):
-    bookings = Book.objects.filter(username = request.user.username) # getting the booking database of the particular user
+    bookings = BookingDetails.objects.filter(username = request.user.username) # getting the booking database of the particular user
     context = {'bookings': bookings }
     return render(request,'userbooking.html', context)
+
+def search(request):
+    pincode = request.POST['pincode']
+    context = {'vaccineDet':VaccineDetails.objects.filter(pin_code = pincode)}
+    return render(request, 'display.html', context)
 
 
 import io
