@@ -120,10 +120,13 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.colors import pink, black, red, blue, green
 
 def pdf(request):
+    username = request.user.username
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
     # context = {'vaccineDet':VaccineCenterDetails.objects.all()}
-    contexts = VaccineCenterDetails.objects.all()
+    contexts = BookingDetails.objects.get(username = username) # why filter doesn't work
+    print(contexts.username)
+    print(username)
 
     # Create the PDF object, using the buffer as its "file."
     p = canvas.Canvas(buffer)
@@ -135,7 +138,7 @@ def pdf(request):
 
     # p.setStrokeColor(red)
     p.setFillColor(green)
-    p.drawString(100, 600, "CONGRATULATIONS, YOU ARE VACCINATED!")
+    p.drawString(100, 600, "CONGRATULATIONS "+ username+", YOU ARE VACCINATED!") # why not commma
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
@@ -143,3 +146,4 @@ def pdf(request):
     # FileResponse sets the Content-Disposition header so that browsers present the option to save the file.
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename = 'Vaccination.pdf')
+
