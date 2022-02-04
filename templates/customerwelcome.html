@@ -2,99 +2,117 @@
 {% load static %}
 
 {% block title %}
-  Hotel Booking Website
+Hotel Booking Website
 {% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'css\style.css' %}">
+<link rel="stylesheet" href="{% static 'css\style.css' %}">
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
- <!-- Scroll Indicator -->
- <div class="header">
-    <div class="progress-container">
-      <div class="progress-bar" id="myBar"></div>
-    </div>
-  </div>
-
-  <canvas id="bg"></canvas>  
-      
-    <main>
-        
-      <a href='/logoutuser/' class ="btn btn-danger logout" style="float: right; margin-right: 20px;">Logout</a>
-      <a href='/userbookings/' class =' btn btn-success booking' style="height: 40px;">My Bookings</a>
-      {% for message in messages %}
-      <span style="text-align: center; margin-left: 550px; font-size: 25px; margin-top: 40px;">Welcome {{username}}</span>
-      {% endfor %}
-
-      <header id='header'>
-        {% for message in messages %}
-        <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-        {% endfor %}
-      <!-- <a href="/login/">login</a> -->
-        <h1>Vaccine Registration Website</h1>
-        
-        <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
-      </header>
-
-      <blockquote>
-        <p>Scientists have achieved the feat of developing vaccines in such shorter duration to deal with Covid-19 pandemic.</p>
-      </blockquote>
-
-      <section>
-        <h2>📜 Manifesto</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+<!-- Scroll Indicator -->
 
 
-      </section>
+<canvas id="bg"></canvas>
 
-      <section class="light">
-        <h2>👩🏽‍🚀 Projects</h2>
+<main>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+  <a href='/logoutuser/' class="btn btn-danger logout"
+    style="margin-right: 20px;width:70px; position:absolute; top:5px; height:30px;">Logout</a>
+  <a href='/userbookings/' class=' btn btn-success booking'
+    style="position:absolute; top:5px;left:87px;height: 30px;">My Bookings</a>
+  {% for message in messages %}
+  <span style="text-align: center; margin-left: 550px; font-size: 25px; margin-top: 40px;">Welcome {{username}}</span>
+  {% endfor %}
 
-        <h2>🏆 Accomplishments</h2>
+  <header id='header'>
+    {% for message in messages %}
+    <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"
+      {% endif %}>{{ message }}</div>
+    {% endfor %}
+    <!-- <a href="/login/">login</a> -->
+    <h1>Vaccine Registration Website</h1>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+    <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
+  </header>
 
-      </section>
+  <blockquote>
+    <p>Scientists have achieved the feat of developing vaccines in such shorter duration to deal with Covid-19 pandemic.
+    </p>
+  </blockquote>
 
-      <blockquote>
-        <p>The best way out is always through <br>-Robert Frost</p>
-      </blockquote>
+  <section>
+    <h2>📜 Manifesto</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
 
-      <section class="left">
-        <h2>🌮 Work History</h2>
 
-        <h3>McDonalds</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <h3>Burger King</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <h3>Taco Bell</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+  </section>
 
-      </section>
+  <section class="light">
+    <h2>👩🏽‍🚀 Projects</h2>
 
-      <blockquote>
-        <p>Thanks for watching!</p>
-      </blockquote>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
 
-    </main>
+    <h2>🏆 Accomplishments</h2>
 
-      
-    <!-- </div> -->
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+  </section>
+
+  <blockquote>
+    <p>The best way out is always through <br>-Robert Frost</p>
+  </blockquote>
+
+  <section class="left">
+    <h2>🌮 Work History</h2>
+
+    <h3>McDonalds</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <h3>Burger King</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <h3>Taco Bell</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+  </section>
+
+  <blockquote>
+    <p>Thanks for watching!</p>
+  </blockquote>
+
+</main>
+
+
+<!-- </div> -->
 
 {% endblock %}
