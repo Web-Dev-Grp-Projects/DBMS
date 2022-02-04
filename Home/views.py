@@ -95,16 +95,19 @@ def bookingdone(request):
 
     VaccineDetails.objects.filter(Vaccine_ID = vaccine).update(availability = F('availability') - 1)
 
-    # for hotel in VaccineDetails.objects.filter(id=vaccine):
-    #     name = hotel.name
-
     BookingDetails(username = username, aadhar = aadhar, name = name, date = date, vaccine = vaccine).save()
     messages.add_message(request, messages.SUCCESS,'Vaccine Booked Successfully')
     return redirect(customerwelcome)
 
 def userbooking(request):
     bookings = BookingDetails.objects.filter(username = request.user.username) # getting the booking database of the particular user
-    context = {'bookings': bookings }
+    # info = VaccineDetails.objects.filter(Vaccine_ID = bookings.vaccine)  # diff bw get and filter?
+    # vaccineid = info.Vaccine_ID
+    context = {'bookings': bookings}
+    # info = BookingDetails.objects.get(username = request.user.username) # getting the booking database of the particular user
+
+    # print(info)
+
     return render(request,'userbooking.html', context)
 
 def search(request):
@@ -112,21 +115,24 @@ def search(request):
     context = {'vaccineDet':VaccineDetails.objects.filter(pin_code = pincode)}
     return render(request, 'display.html', context)
 
-# def cancel(request,vaccineid):
-#     messages.add_message(request, messages.SUCCESS, "Booking successfully cancelled")
-#     Book.objects.filter(id = vaccineid).delete() # cancelling the user booking by deleteing the booking from his account
-#     VaccineDetails.objects.filter(Vaccine_ID = vaccine).update(availability = F('availability') + 1)
+def cancel(request, bookid):
+    messages.add_message(request, messages.SUCCESS, "Booking successfully cancelled")
+    bookings = BookingDetails.objects.filter(username = request.user.username, id = bookid)
+    print(bookings[0])
+    # BookingDetails.objects.filter(id = bookid).delete() # cancelling the user booking by deleteing the booking from his account
+    # VaccineDetails.objects.filter(Vaccine_ID = vaccine).update(availability = F('availability') + 1)
 
-#     return redirect(userbooking)
+    return redirect(userbooking)
 
 def pdf(request):
     username = request.user.username
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
     # context = {'vaccineDet':VaccineCenterDetails.objects.all()}
-    info = BookingDetails.objects.get(username = username) # why filter doesn't work
-    vaccineid = info.Vaccine_ID
-
+    # info = BookingDetails.objects.get(username = username) # why filter doesn't work
+    # vaccineid = info.Vaccine_ID
+    img = './static/images/pic4.jpg'
+    print(img)
     # Create the PDF object, using the buffer as its "file."
     p = canvas.Canvas(buffer)
 
@@ -137,8 +143,10 @@ def pdf(request):
 
     # p.setStrokeColor(red)
     p.setFillColor(green)
-    p.drawString(100, 600, "CONGRATULATIONS "+ username + "," + vaccineid + " YOU ARE VACCINATED!") # why not commma
+    p.drawString(100, 800, "CONGRATULATIONS "+ username + ", YOU ARE VACCINATED!") # why not commma
     # Close the PDF object cleanly, and we're done.
+    p.drawImage(img, 150, 200, width = 320, preserveAspectRatio = True, mask='auto')
+
     p.showPage()
     p.save()
 

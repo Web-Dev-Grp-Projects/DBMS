@@ -141,7 +141,7 @@
   }
   body{
     background-color: #f6f6f6;
-    min-height: calc(6000px + 100vh);
+    /* min-height: calc(6000px + 100vh); */
   }
   
   :root {
