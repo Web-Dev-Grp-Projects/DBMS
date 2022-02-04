@@ -39,3 +39,6 @@ class BookingDetails(models.Model):
     vaccine = models.IntegerField()
     status = models.BooleanField(default = False)
     date = models.DateField()
+    
+    def __str__(self):
+            return self.username

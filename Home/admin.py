@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Book)
 admin.site.register(VaccineCenterDetails)
 admin.site.register(VaccineDetails)
+admin.site.register(BookingDetails)

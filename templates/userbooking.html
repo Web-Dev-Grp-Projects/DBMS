@@ -15,7 +15,7 @@
 
 {% for message  in messages %}
     <div class="alert alert-danger" role="alert" style="text-align: center;">
-        {{message}}      
+{{message}}      
     </div>      
     {% endfor %}
 <a href="/customerwelcome/" class= "btn btn-success" style="margin-top: 10px; margin-left: 20px; font-size: 20px;">Home</a>
@@ -28,13 +28,14 @@
         <td><h2><b>Aadhar Number</b></h2></td>
         <td><h2><b>Name</b></h2></td>
         <td><h2><b>Date</b></h2></td>
+        <td><h2><b>Print Certificate</b></h2></td>
         <td><h2><b>Cancel Booking</b></h2></td>
     </tr>
 
     <!-- Getting the particular logged-in user booking details-->
     {% for booking in bookings %}
     <tr style="text-align: center;">
-        <td><h2>NONE RIGHT NOW</h2></td>
+        <td><h2>{{vaccineid}}/h2></td>
         <td><h2>{{booking.username}}</h2></td>
         <!-- {% if booking.Hotel_image %}
         <td><img src="{{ booking.Hotel_image.url }}" height ="280px" width="500px" style ="margin-bottom: 50px;"></td>
@@ -42,6 +43,8 @@
         <td><h2>{{booking.aadhar}}</h2></td>
         <td><h2>{{booking.name}}</h2></td>
         <td><h2>{{booking.date}}</h2></td>
+        <!-- <td><a href="/pdf/{{booking.id}}/" class="btn btn-success">Print my Certificate</a></td> -->
+        <td><a href="/pdf/" class="btn btn-success">Print my Certificate</a></td>
 
         <td><a href="/cancel/{{booking.id}}/" class="btn btn-danger">Cancel My Booking</a></td>
     </tr>
