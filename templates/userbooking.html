@@ -24,6 +24,7 @@
 <table style="width: 98%; padding-bottom: 20px; margin: 20px; background-color: blanchedalmond;">
     <tr style="text-align: center; font-weight: bold;">
         <td><h2><b>Vaccine ID</b></h2></td>
+        <td><h2><b>Username</b></h2></td>
         <td><h2><b>Aadhar Number</b></h2></td>
         <td><h2><b>Name</b></h2></td>
         <td><h2><b>Date</b></h2></td>
@@ -31,8 +32,9 @@
     </tr>
 
     <!-- Getting the particular logged-in user booking details-->
-    {% for booking in bookings %}  
+    {% for booking in bookings %}
     <tr style="text-align: center;">
+        <td><h2>NONE RIGHT NOW</h2></td>
         <td><h2>{{booking.username}}</h2></td>
         <!-- {% if booking.Hotel_image %}
         <td><img src="{{ booking.Hotel_image.url }}" height ="280px" width="500px" style ="margin-bottom: 50px;"></td>

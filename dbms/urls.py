@@ -39,6 +39,7 @@ urlpatterns = [
     path('bookingdone/', bookingdone),
     path('pdf/', pdf),
     path('userbookings/', userbooking),
+    # path('cancel/<int:bookid>/',cancel),
     
     path("password-reset/", auth_views.PasswordResetView.as_view(
         template_name="registration/password_reset.html"), name="password_reset"),
