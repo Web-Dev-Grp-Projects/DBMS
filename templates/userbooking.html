@@ -7,11 +7,13 @@
 
 {% block content %}
 
-<!-- <style>
-    @media screen {
+<style>
+    /* @media screen {
         
-    }
-</style> -->
+    } */
+    body{background-color: #474e5d;}
+
+</style>
 
 {% for message  in messages %}
     <div class="alert alert-danger" role="alert" style="text-align: center;">
@@ -19,7 +21,7 @@
     </div>      
     {% endfor %}
 <a href="/customerwelcome/" class= "btn btn-success" style="margin-top: 10px; margin-left: 20px; font-size: 20px;">Home</a>
-<h1 style="text-align: center; color: rgb(30, 48, 210);">My Bookings</h1>
+<h1 style="text-align: center; color: white">My Bookings</h1>
 
 <table style="width: 98%; padding-bottom: 20px; margin: 20px; background-color: blanchedalmond;">
     <tr style="text-align: center; font-weight: bold;">
