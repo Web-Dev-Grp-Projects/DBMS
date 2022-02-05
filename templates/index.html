@@ -61,13 +61,14 @@
     </div>
   </div>
 
-  <canvas id="bg"></canvas>  
+  <canvas id="bg"></canvas>
       
     <main>
-      <header id='header'>
-        {% for message in messages %}
-        <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+      {% for message in messages %}
+        <div style="position:absolute; top:5px; left:700px; height: 55px; width:180px; font-size:18px; text-align:center;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
         {% endfor %}
+      <header id='header'>
+        
         <h1>Vaccine Registration Website</h1>
         
         <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>

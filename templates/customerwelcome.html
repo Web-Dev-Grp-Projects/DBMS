@@ -18,14 +18,14 @@ Hotel Booking Website
 <main>
 
   <a href='/logoutuser/' class="btn btn-danger logout"
-    style="margin-right: 20px;width:70px; position:absolute; top:5px; height:30px;">Logout</a>
+    style="margin-right: 20px;width:80px; position:absolute; top:5px; height:40px; font-size: 16px">Logout</a>
   <a href='/userbookings/' class=' btn btn-success booking'
-    style="position:absolute; top:5px;left:87px;height: 30px;">My Bookings</a>
-  <span style="text-align: center; margin-left: 550px; font-size: 25px; margin-top: 40px;">Welcome {{username}}</span>
+    style="position:absolute; top:5px;left:87px;height: 40px; width:110px;font-size: 16px">My Bookings</a>
+  <span style="text-align: center; margin-left: 550px; font-size: 25px; font-weight: bold">Welcome {{username}}</span>
  
   <header id='header'>
     {% for message in messages %}
-    <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"
+    <div style="position:absolute; top:5px; left:700px; height: 55px; width:180px; font-size:18px; text-align:center;" {% if message.tags %} class="{{ message.tags }}"
       {% endif %}>{{ message }}</div>
     {% endfor %}
     <h1>Vaccine Registration Website</h1>

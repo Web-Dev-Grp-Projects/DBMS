@@ -1,29 +1,26 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Details</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text\css'>
 
-{% block title %}
-Vaccine Details
-{% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-{% block head %}
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text\css'>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link rel="stylesheet" href="{%static 'css\style2.css'%}">
-
-{% endblock %}
-
-{% block content %}
+    <link rel="stylesheet" href="{%static 'css\style2.css' %}">
+</head>
 
 <body>
+    <a href="/customerwelcome/" class= "btn btn-success" style="margin-top: 10px; margin-left: 20px; font-size: 20px;">Home</a>
+
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Table #07</h2>
+                    <h2 class="heading-section">Vaccine Center Details</h2>
                 </div>
             </div>
             <div class="row">
@@ -39,13 +36,14 @@ Vaccine Details
                                     <th>Vaccine Center Address</th>
                                     <th>Type of Vaccine</th>
                                     <th>Availability</th>
+                                    <th>Book</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for vaccine in vaccineDet %}
 
                                 <tr>
-                                    <th scope=" row">1</th>
                                     <td>{{vaccine.Vaccine_ID}}</td>
                                     <td>{{vaccine.Center.Center_Id}}</td>
                                     <td>{{vaccine.Center.VaccineCenterName}}</td>
@@ -67,13 +65,10 @@ Vaccine Details
         </div>
     </section>
 
-
-
     <script type="module" src="{% static 'js\main.js' %}"></script>
     <script src="{% static 'js\jquery-2.1.4.min.js' %}"></script>
     <script src="{% static 'js\bootstrap.min.js' %}"></script>
     <script src="{% static 'js\popper.js' %}"></script>
 
-    {% endblock %}
-
 </body>
+</html>
