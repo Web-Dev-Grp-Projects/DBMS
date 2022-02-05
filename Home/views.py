@@ -23,9 +23,6 @@ def homePage(request):
 def loginPage(request):
     return render(request, "login.html", {})
 
-def form(request):
-    return render(request, "form.html", {})
-
 def customerwelcome(request):
     if not request.user.is_authenticated:
         return redirect(homePage)
@@ -100,10 +97,11 @@ def userbooking(request):
     bookings = BookingDetails.objects.filter(username = request.user.username) # getting the booking database of the particular user
     # info = VaccineDetails.objects.filter(Vaccine_ID = bookings.vaccine)  # diff bw get and filter?
     # vaccineid = info.Vaccine_ID
-    context = {'bookings': bookings}
     # info = BookingDetails.objects.get(username = request.user.username) # getting the booking database of the particular user
+    for i in range(len(bookings)):
+        print(bookings[i].vaccine)
 
-    # print(info)
+    context = {'bookings': bookings}
 
     return render(request,'userbooking.html', context)
 
