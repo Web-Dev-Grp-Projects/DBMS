@@ -11,20 +11,12 @@ Vaccine Details
 
 {% block content %}
 <style>
-  .b {
-    position: absolute;
-    top: 311px;
-
-  }
-
   th,
   td {
     border: 1px solid black;
     text-align: center;
     /* border-radius: 50px; */
   }
-
-
 
   .block {
     display: block;
@@ -47,7 +39,7 @@ Vaccine Details
   .signupbtn {
     position: relative;
     top: 60px;
-    width: 150px;
+    width: 90px;
   }
 
   .filter {
@@ -56,81 +48,79 @@ Vaccine Details
   }
 </style>
 
-<body>
-  <form action="/">
-    <input class="block" type="submit" value="Home" />
-  </form>
+<form action="/">
+  <input class="block" type="submit" value="Home" />
+</form>
 
 
 
 
-  <form method="post" action="/search/">
-    {% csrf_token %}
-    <label class="a"><b>Filter</b></label>
-    <input class="filter" type="text" placeholder="Enter pincode" name="pincode">
-    <button type="submit" class="signupbtn">Search</button>
-  </form>
+<form method="post" action="/search/">
+  {% csrf_token %}
+  <label class="a"><b>Filter</b></label>
+  <input class="filter" type="text" placeholder="Enter pincode" name="pincode">
+  <button type="submit" class="signupbtn">Search</button>
+</form>
 
-  <table class="b" style="width:98%; font-size:20px;">
-    <tr>
-      <th>Vaccine ID</th>
-      <th>Vaccine Center ID</th>
-      <th>Vaccine Center Name</th>
-      <th>Vaccine Center Pin Code</th>
-      <th>Vaccine Center Address</th>
-      <th>Type of Vaccine</th>
-      <th>Availability</th>
+<table class="b" style="width:98%; font-size:20px;">
+  <tr>
+    <th>Vaccine ID</th>
+    <th>Vaccine Center ID</th>
+    <th>Vaccine Center Name</th>
+    <th>Vaccine Center Pin Code</th>
+    <th>Vaccine Center Address</th>
+    <th>Type of Vaccine</th>
+    <th>Availability</th>
 
-      <th>Book</th>
-    </tr>
-    {% for vaccine in vaccineDet %}
+    <th>Book</th>
+  </tr>
+  {% for vaccine in vaccineDet %}
 
-    <tr>
-      <td>{{vaccine.Vaccine_ID}}</td>
-      <td>{{vaccine.Center.Center_Id}}</td>
-      <td>{{vaccine.Center.VaccineCenterName}}</td>
-      <td>{{vaccine.Center.pin_code}}</td>
-      <td>{{vaccine.Center.address}}</td>
-      <td>{{vaccine.type_of_vaccine}}</td>
-      <td>{{vaccine.availability}}</td>
-      <!-- <td>/book/{{vaccine.Vaccine_ID}}</td> -->
-      <td><a href="/book/{{vaccine.Vaccine_ID}}" class='btn btn-primary'>Book</a></td>
-      <!-- <td><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">BOOK</button></td> -->
-      <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button> -->
-    </tr>
-    {% endfor %}
-  </table>
-  <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-      title="Close Modal">&times;</span>
-    <form class="modal-content" action="/book/{{vaccine.Vaccine_ID}}">
+  <tr>
+    <td>{{vaccine.Vaccine_ID}}</td>
+    <td>{{vaccine.Center.Center_Id}}</td>
+    <td>{{vaccine.Center.VaccineCenterName}}</td>
+    <td>{{vaccine.Center.pin_code}}</td>
+    <td>{{vaccine.Center.address}}</td>
+    <td>{{vaccine.type_of_vaccine}}</td>
+    <td>{{vaccine.availability}}</td>
+    <!-- <td>/book/{{vaccine.Vaccine_ID}}</td> -->
+    <td><a href="/book/{{vaccine.Vaccine_ID}}" class='btn btn-primary'>Book</a></td>
+    <!-- <td><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">BOOK</button></td> -->
+    <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button> -->
+  </tr>
+  {% endfor %}
+</table>
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/book/{{vaccine.Vaccine_ID}}">
 
-      <div class="container">
-        <h1>Vaccine Booking</h1>
-        <p>Please fill in this form to book your vaccine.</p>
-        <hr>
-        <label><b>Aadhar Number</b></label>
-        <!-- <input type="text" placeholder="Enter Aadhar Number" name="Aadhar Number" required> -->
-        <input type="text" placeholder="Enter Aadhar Number" name="aadhar_number" required>
+    <div class="container">
+      <h1>Vaccine Booking</h1>
+      <p>Please fill in this form to book your vaccine.</p>
+      <hr>
+      <label><b>Aadhar Number</b></label>
+      <!-- <input type="text" placeholder="Enter Aadhar Number" name="Aadhar Number" required> -->
+      <input type="text" placeholder="Enter Aadhar Number" name="aadhar_number" required>
 
-        <label><b>Name</b></label>
-        <input type="text" placeholder="Enter Name" name="Name" required>
+      <label><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="Name" required>
 
-        <label><b>Date for Vaccination</b></label>
-        <input type="date" placeholder="Date" name="date" required>
+      <label><b>Date for Vaccination</b></label>
+      <input type="date" placeholder="Date" name="date" required>
 
-        <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
+      <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
 
-        <div class="clearfix">
-          <button type="button" onclick="document.getElementById('id01').style.display='none'"
-            class="cancelbtn">Cancel</button>
-          <button type="submit" class="signupbtn">Book</button>
-        </div>
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Book</button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
 
-</body>
+
 
 <script>
   // Get the modal
