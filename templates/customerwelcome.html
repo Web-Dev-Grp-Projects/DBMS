@@ -13,7 +13,6 @@ Hotel Booking Website
 
 <!-- Scroll Indicator -->
 
-
 <canvas id="bg"></canvas>
 
 <main>
@@ -22,16 +21,13 @@ Hotel Booking Website
     style="margin-right: 20px;width:70px; position:absolute; top:5px; height:30px;">Logout</a>
   <a href='/userbookings/' class=' btn btn-success booking'
     style="position:absolute; top:5px;left:87px;height: 30px;">My Bookings</a>
-  {% for message in messages %}
   <span style="text-align: center; margin-left: 550px; font-size: 25px; margin-top: 40px;">Welcome {{username}}</span>
-  {% endfor %}
-
+ 
   <header id='header'>
     {% for message in messages %}
     <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"
       {% endif %}>{{ message }}</div>
     {% endfor %}
-    <!-- <a href="/login/">login</a> -->
     <h1>Vaccine Registration Website</h1>
 
     <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
@@ -43,40 +39,31 @@ Hotel Booking Website
   </blockquote>
 
   <section>
-    <h2>📜 Manifesto</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <h2>📜 COVAXIN</h2>
+    <p style = "font-size:15px;">
+      COVAXIN®, India's indigenous COVID-19 vaccine by Bharat Biotech is developed in collaboration with the Indian Council of Medical Research (ICMR) - National Institute of Virology (NIV).
 
+      The indigenous, inactivated vaccine is developed and manufactured in Bharat Biotech's BSL-3 (Bio-Safety Level 3) high containment facility. </p>
 
   </section>
 
   <section class="light">
-    <h2>👩🏽‍🚀 Projects</h2>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-
-    <h2>🏆 Accomplishments</h2>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <h2> Key Attributes</h2>
+    <h3>1</h3>
+    <p>COVAXIN® is included along with immune-potentiators, also known as vaccine adjuvants, which are added to the vaccine to increase and boost its immunogenicity.</p>
+    <h3>2</h3>
+    <p>It is a 2-dose vaccination regimen given 28 days apart. </p>
+    <h3>3</h3>
+    <p>It is a vaccine with no sub-zero storage, no reconstitution requirement, and ready to use liquid presentation in multi-dose vials, stable at 2-8oC. </p>
+    <h3>4</h3>
+    <p>Pre-clinical studies: Demonstrated strong immunogenicity and protective efficacy in animal challenge studies conducted in hamsters & non-human primates. For more information about our animal study, please visit our blog page on Non-Human Primates. </p>
+    <h3>5</h3>
+    <p>The vaccine received DCGI approval for Phase I & II Human Clinical Trials in July, 2020.</p>
 
   </section>
 
   <blockquote>
-    <p>The best way out is always through <br>-Robert Frost</p>
+    <p>The Vaccination like alone remedy</p>
   </blockquote>
 
   <section class="left">
@@ -84,35 +71,19 @@ Hotel Booking Website
 
     <h3>McDonalds</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
     <h3>Burger King</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <h3>Taco Bell</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
 
   </section>
 
   <blockquote>
-    <p>Thanks for watching!</p>
+    <p>Thanks for visiting!</p>
   </blockquote>
 
 </main>
-
-
-<!-- </div> -->
 
 {% endblock %}

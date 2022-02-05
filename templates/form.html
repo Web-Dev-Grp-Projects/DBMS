@@ -4,11 +4,9 @@
     body {
         font-family: Arial, Helvetica, sans-serif;
     }
-
     * {
         box-sizing: border-box;
     }
-
     /* Full-width input fields */
     input[type=text],
     input[type=password] {
@@ -43,7 +41,6 @@
         opacity: 1;
     }
 
-    /* Extra styles for the cancel button */
     .cancelbtn {
         padding: 14px 20px;
         background-color: #f44336;
@@ -133,7 +130,6 @@
 <body>
 
     <h2>Modal Signup Form</h2>
-
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 
     <div id="id01" class="modal">
@@ -145,8 +141,6 @@
                 <p>Please fill in this form to book your vaccine.</p>
                 <hr>
                 <input value = {{vaccineid}} type = 'hidden' name = "vaccineid">
-                <!-- <input value = {{username}} type = 'hidden' name = "username"> -->
-
                 <label><b>Aadhar Number</b></label>
                 <!-- <input type="text" placeholder="Enter Aadhar Number" name="Aadhar Number" required> -->
                 <input type="text" placeholder="Enter Aadhar Number" name="aadhar_number" required> 
@@ -156,9 +150,7 @@
   
                 <label><b>Date for Vaccination</b></label>
                 <input type="date" placeholder="Date" name="date" required>
-  
-                <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
-  
+    
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
                         class="cancelbtn">Cancel</button>
@@ -181,5 +173,4 @@
     </script>
 
 </body>
-
 </html>

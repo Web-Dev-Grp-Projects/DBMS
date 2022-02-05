@@ -68,7 +68,6 @@
         {% for message in messages %}
         <div style="text-align: center; height: 40px; padding-top: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
         {% endfor %}
-      <!-- <a href="/login/">login</a> -->
         <h1>Vaccine Registration Website</h1>
         
         <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
@@ -133,8 +132,5 @@
     <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
-
-    <!-- <script type="module" src="{static 'js/main.js' %}"></script> -->
 </body>
-
 </html>

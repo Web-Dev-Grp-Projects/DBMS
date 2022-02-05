@@ -20,9 +20,6 @@ def homePage(request):
     else:
         return render(request, "index.html", {})
 
-def adminHomePage(request):
-    return render(request, "adminhomepage.html", {})
-
 def loginPage(request):
     return render(request, "login.html", {})
 
@@ -112,15 +109,17 @@ def userbooking(request):
 
 def search(request):
     pincode = request.POST['pincode']
-    context = {'vaccineDet':VaccineDetails.objects.filter(pin_code = pincode)}
+    context = {'vaccineDet':VaccineDetails.objects.filter(Center__pin_code = pincode)} # Filtering on the basis of foreign key atttribute
     return render(request, 'display.html', context)
 
 def cancel(request, bookid):
     messages.add_message(request, messages.SUCCESS, "Booking successfully cancelled")
     bookings = BookingDetails.objects.filter(username = request.user.username, id = bookid)
-    print(bookings[0])
-    # BookingDetails.objects.filter(id = bookid).delete() # cancelling the user booking by deleteing the booking from his account
-    # VaccineDetails.objects.filter(Vaccine_ID = vaccine).update(availability = F('availability') + 1)
+    # print(bookings[0])
+    vaccinenum = bookings[0].vaccine
+
+    BookingDetails.objects.filter(id = bookid).delete() # cancelling the user booking by deleteing the booking from his account
+    VaccineDetails.objects.filter(Vaccine_ID = vaccinenum).update(availability = F('availability') + 1)
 
     return redirect(userbooking)
 
