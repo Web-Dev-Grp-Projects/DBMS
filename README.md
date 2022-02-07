@@ -1,13 +1,17 @@
 # DBMS
  <a href = "https://vaccineregistration.herokuapp.com/" target="_blank" rel="noopener noreferrer">Vaccine Registration System</a>
  
-<p>Website along with the PostgreSQL database. People can open our website and can register themselves with the help of their username. After logging in, the person browse through all the available vaccination centers and can also see the available slotes. They can filter by pin code for where they want to get vaccinated.
+<p>Website along with the PostgreSQL database. The HomePage of the website is <b>3D</b>. The position of the globe changes based on the scroll position of the user. People can open our website and can register themselves with the help of their username. After logging in, the person browse through all the available vaccination centers and can also see the available slotes. They can filter by pin code for where they want to get vaccinated.
 The database will contain all the required details of the person and their present vaccination status. After each vaccination, they can download their vaccination certificates also.</p>
 
 ## Screenshots of the website
 * HomePage
 
 ![homepage](https://user-images.githubusercontent.com/67872867/152632364-ba5f2ec1-aa33-41f0-bf95-2371249cc9ed.jpg)
+
+* Vaccine Details
+
+![vaccine](https://user-images.githubusercontent.com/67872867/152651088-0a25b444-84dc-4764-8162-8f584c115e5b.jpg)
 
 ## Use of the website
 * Ease of use and accessibility

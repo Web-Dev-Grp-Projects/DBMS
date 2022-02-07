@@ -33,7 +33,7 @@ class VaccineDetails(models.Model):
 
 class BookingDetails(models.Model):
     username = models.CharField(max_length=255)
-    aadhar = models.IntegerField()
+    aadhar = models.BigIntegerField()
     name = models.CharField(max_length = 255)
     # vaccine = models.ForeignKey(VaccineDetails, on_delete = models.CASCADE)
     vaccine = models.IntegerField()
