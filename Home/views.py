@@ -101,6 +101,12 @@ def userbooking(request):
     for i in range(len(bookings)):
         print(bookings[i].vaccine)
 
+    for i in range(len(bookings)):
+        a = VaccineDetails.objects.filter(Vaccine_ID = bookings[i].vaccine)
+        print(type(a))
+        print(a[0].Vaccine_ID)
+        ids = a[0].Vaccine_ID
+
     context = {'bookings': bookings}
 
     return render(request,'userbooking.html', context)

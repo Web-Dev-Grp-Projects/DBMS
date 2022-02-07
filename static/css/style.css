@@ -230,6 +230,17 @@
       grid-column: 6 / 12;
     }
 
+
+    .logout:hover {
+      background-color: red;
+    }
+    
+    .logout {
+      color: white;
+      background-color: transparent;
+    }
+
+    
     @media only screen and (max-width: 600px) {
       header {
         grid-column: 2/12;

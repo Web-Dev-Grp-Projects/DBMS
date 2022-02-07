@@ -16,9 +16,9 @@
 </style>
 
 {% for message  in messages %}
-    <div class="alert alert-danger" role="alert" style="text-align: center;">
-{{message}}      
-    </div>      
+    <div class="alert alert-danger" role="alert" style="text-align: center; font-size:15px;">
+{{message}}
+    </div>
     {% endfor %}
 <a href="/customerwelcome/" class= "btn btn-success" style="margin-top: 10px; margin-left: 20px; font-size: 20px;">Home</a>
 <h1 style="text-align: center; color: white">My Bookings</h1>
@@ -37,7 +37,7 @@
     <!-- Getting the particular logged-in user booking details-->
     {% for booking in bookings %}
     <tr style="text-align: center;">
-        <td><h2>{{vaccineid}}/h2></td>
+        <td><h2>{{id}}/h2></td>
         <td><h2>{{booking.username}}</h2></td>
         <!-- {% if booking.Hotel_image %}
         <td><img src="{{ booking.Hotel_image.url }}" height ="280px" width="500px" style ="margin-bottom: 50px;"></td>
@@ -45,10 +45,17 @@
         <td><h2>{{booking.aadhar}}</h2></td>
         <td><h2>{{booking.name}}</h2></td>
         <td><h2>{{booking.date}}</h2></td>
+        {% if booking.status == False %}
         <!-- <td><a href="/pdf/{{booking.id}}/" class="btn btn-success">Print my Certificate</a></td> -->
-        <td><a href="/pdf/" class="btn btn-success">Print my Certificate</a></td>
-
+        <td><a href="/pdf/" class="btn btn-success" id = "print" disabled="disabled">Print my Certificate</a></td>
+        {% else %}
+        <td><a href="/pdf/" class="btn btn-success" id = "print">Print my Certificate</a></td>
+        {% endif %}
+        {% if booking.status == False %}
         <td><a href="/cancel/{{booking.id}}/" class="btn btn-danger">Cancel My Booking</a></td>
+        {% else %}
+        <td><a href="/cancel/{{booking.id}}/" class="btn btn-danger" disabled="disabled">Cancel My Booking</a></td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>
