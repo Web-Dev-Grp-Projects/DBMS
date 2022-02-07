@@ -69,6 +69,8 @@
   margin: 0 auto;
 }
 
+
+
 /* Box */
 .preloader .preloader-box {
   width: 75px;
@@ -227,6 +229,17 @@ header {
   animation-fill-mode: forwards;
   animation: fadeIn4 4s;
 }
+
+.logout:hover {
+  background-color: red;
+}
+
+.logout {
+  background-color: transparent;
+  color: white;
+}
+
+
 
 .center {
   position: absolute;

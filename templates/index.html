@@ -26,7 +26,7 @@
     Vaccine Registration
     {% endblock %}
   </title>
-  
+
   <link rel="stylesheet" href="{% static 'css\style.css' %}">
 
   {% block head %}
@@ -62,73 +62,96 @@
   </div>
 
   <canvas id="bg"></canvas>
-      
-    <main>
-      {% for message in messages %}
-        <div style="position:absolute; top:5px; left:700px; height: 55px; width:180px; font-size:18px; text-align:center;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-        {% endfor %}
-      <header id='header'>
-        
-        <h1>Vaccine Registration Website</h1>
-        
-        <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
-      </header>
 
-      <blockquote>
-        <p>Scientists have achieved the feat of developing vaccines in such shorter duration to deal with Covid-19 pandemic.</p>
-      </blockquote>
+  <main>
 
-      <section>
-        <h2>📜 COVAXIN</h2>
-        <p style = "font-size:15px;">
-          COVAXIN®, India's indigenous COVID-19 vaccine by Bharat Biotech is developed in collaboration with the Indian Council of Medical Research (ICMR) - National Institute of Virology (NIV).
+    <a style="font-size:24px;position:absolute;right: 9px;" href="https://github.com/Web-Dev-Grp-Projects/DBMS"><i
+        class="fa fa-github"></i></a>
 
-          The indigenous, inactivated vaccine is developed and manufactured in Bharat Biotech's BSL-3 (Bio-Safety Level 3) high containment facility. </p>
+    {% for message in messages %}
+    <div style="position:absolute; top:5px; left:700px; height: 55px; width:180px; font-size:18px; text-align:center;"
+      {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
 
-      </section>
 
-      <section class="light" style="font-size: 14px;">
-        <h2> Key Attributes</h2>
-        <h3>1</h3>
-        <p>COVAXIN® is included along with immune-potentiators, also known as vaccine adjuvants, which are added to the vaccine to increase and boost its immunogenicity.</p>
-        <h3>2</h3>
-        <p>It is a 2-dose vaccination regimen given 28 days apart. </p>
-        <h3>3</h3>
-        <p>It is a vaccine with no sub-zero storage, no reconstitution requirement, and ready to use liquid presentation in multi-dose vials, stable at 2-8oC. </p>
-        <h3>4</h3>
-        <p>Pre-clinical studies: Demonstrated strong immunogenicity and protective efficacy in animal challenge studies conducted in hamsters & non-human primates. For more information about our animal study, please visit our blog page on Non-Human Primates. </p>
-        <h3>5</h3>
-        <p>The vaccine received DCGI approval for Phase I & II Human Clinical Trials in July, 2020.</p>
+    <header id='header'>
 
-      </section>
+      <h1>Vaccine Registration Website</h1>
 
-      <blockquote>
-        <p>The Vaccination like alone remedy</p>
-      </blockquote>
+      <a style="text-decoration:none; color: green; font-weight: bold;" href="/login/">💉 Book your vaccine today!</a>
+    </header>
 
-      <section class="left" style="font-size: 14px;">
-        <h2>COVID-19</h2>
-        <p>
-          Most people infected with the virus will experience mild to moderate respiratory illness and recover without requiring special treatment. However, some will become seriously ill and require medical attention. Older people and those with underlying medical conditions like cardiovascular disease, diabetes, chronic respiratory disease, or cancer are more likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill or die at any age.
-        </p>
-        <p>
-          The best way to prevent and slow down transmission is to be well informed about the disease and how the virus spreads. Protect yourself and others from infection by staying at least 1 metre apart from others, wearing a properly fitted mask, and washing your hands or using an alcohol-based rub frequently. Get vaccinated when it’s your turn and follow local guidance. 
-        </p>
-       
-      </section>
+    <blockquote>
+      <p>Scientists have achieved the feat of developing vaccines in such shorter duration to deal with Covid-19
+        pandemic.</p>
+    </blockquote>
 
-      <blockquote>
-        <p>Thanks for visiting!</p>
-      </blockquote>
+    <section>
 
-    </main>
-    <!-- <script id="vertexShader" type="text/plain" src="../static/shaders/vertex.glsl"></script> -->
+      <h2>📜 COVAXIN</h2>
+      <p style="font-size:15px;">
+        COVAXIN®, India's indigenous COVID-19 vaccine by Bharat Biotech is developed in collaboration with the Indian
+        Council of Medical Research (ICMR) - National Institute of Virology (NIV).
+
+        The indigenous, inactivated vaccine is developed and manufactured in Bharat Biotech's BSL-3 (Bio-Safety Level 3)
+        high containment facility. </p>
+
+    </section>
+
+    <section class="light" style="font-size: 14px;">
+      <h2> Key Attributes</h2>
+      <h3>1</h3>
+      <p>COVAXIN® is included along with immune-potentiators, also known as vaccine adjuvants, which are added to the
+        vaccine to increase and boost its immunogenicity.</p>
+      <h3>2</h3>
+      <p>It is a 2-dose vaccination regimen given 28 days apart. </p>
+      <h3>3</h3>
+      <p>It is a vaccine with no sub-zero storage, no reconstitution requirement, and ready to use liquid presentation
+        in multi-dose vials, stable at 2-8oC. </p>
+      <h3>4</h3>
+      <p>Pre-clinical studies: Demonstrated strong immunogenicity and protective efficacy in animal challenge studies
+        conducted in hamsters & non-human primates. For more information about our animal study, please visit our blog
+        page on Non-Human Primates. </p>
+      <h3>5</h3>
+      <p>The vaccine received DCGI approval for Phase I & II Human Clinical Trials in July, 2020.</p>
+
+    </section>
+
+    <blockquote>
+      <p>The Vaccination like alone remedy</p>
+    </blockquote>
+
+    <section class="left" style="font-size: 14px;">
+      <h2>COVID-19</h2>
+      <p>
+        Most people infected with the virus will experience mild to moderate respiratory illness and recover without
+        requiring special treatment. However, some will become seriously ill and require medical attention. Older people
+        and those with underlying medical conditions like cardiovascular disease, diabetes, chronic respiratory disease,
+        or cancer are more likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill
+        or die at any age.
+      </p>
+      <p>
+        The best way to prevent and slow down transmission is to be well informed about the disease and how the virus
+        spreads. Protect yourself and others from infection by staying at least 1 metre apart from others, wearing a
+        properly fitted mask, and washing your hands or using an alcohol-based rub frequently. Get vaccinated when it’s
+        your turn and follow local guidance.
+      </p>
+
+    </section>
+
+    <blockquote>
+      <p>Thanks for visiting!</p>
+    </blockquote>
+
+  </main>
+  <!-- <script id="vertexShader" type="text/plain" src="../static/shaders/vertex.glsl"></script> -->
 
   {% endblock %}
 
-    <script type="module" src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+  <script type="module" src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- <script src="{% static 'js/script.js' %}"></script> -->
 </body>
+
 </html>
