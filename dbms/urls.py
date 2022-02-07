@@ -29,7 +29,7 @@ urlpatterns = [
     path('search/', search),
     path('book/<int:bookp>/', book),
     path('bookingdone/', bookingdone),
-    path('pdf/', pdf),
+    path('pdf/<int:vaccineid>/', pdf),
     path('userbookings/', userbooking),
     path('cancel/<int:bookid>/', cancel),
 ]

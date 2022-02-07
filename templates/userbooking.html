@@ -26,7 +26,7 @@
 <table style="width: 98%; padding-bottom: 20px; margin: 20px; background-color: blanchedalmond;">
     <tr style="text-align: center; font-weight: bold;">
         <td><h2><b>Vaccine ID</b></h2></td>
-        <td><h2><b>Username</b></h2></td>
+        <td><h2><b>Vaccine Name</b></h2></td>
         <td><h2><b>Aadhar Number</b></h2></td>
         <td><h2><b>Name</b></h2></td>
         <td><h2><b>Date</b></h2></td>
@@ -35,10 +35,10 @@
     </tr>
 
     <!-- Getting the particular logged-in user booking details-->
-    {% for booking in bookings %}
+    {% for id, booking, name in data %}
     <tr style="text-align: center;">
-        <td><h2>{{id}}/h2></td>
-        <td><h2>{{booking.username}}</h2></td>
+        <td><h2>{{id}}</td>
+        <td><h2>{{name}}</h2></td>
         <!-- {% if booking.Hotel_image %}
         <td><img src="{{ booking.Hotel_image.url }}" height ="280px" width="500px" style ="margin-bottom: 50px;"></td>
         {% endif %} -->
@@ -49,7 +49,7 @@
         <!-- <td><a href="/pdf/{{booking.id}}/" class="btn btn-success">Print my Certificate</a></td> -->
         <td><a href="/pdf/" class="btn btn-success" id = "print" disabled="disabled">Print my Certificate</a></td>
         {% else %}
-        <td><a href="/pdf/" class="btn btn-success" id = "print">Print my Certificate</a></td>
+        <td><a href="/pdf/{{id}}" class="btn btn-success" id = "print">Print my Certificate</a></td>
         {% endif %}
         {% if booking.status == False %}
         <td><a href="/cancel/{{booking.id}}/" class="btn btn-danger">Cancel My Booking</a></td>

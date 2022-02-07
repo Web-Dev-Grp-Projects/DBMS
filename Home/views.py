@@ -1,7 +1,6 @@
 from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-# "python.analysis.extraPaths": ["C:/Users/adity/Desktop/Aditya/webdev/dbms/Home/views.py"]
 from django.contrib import messages
 from django.contrib.auth.models import User
 # from reportlab.lib.units import inch
@@ -14,7 +13,6 @@ from Home.models import *
 from django.db.models import F
 
 # Create your views here.
-
 
 def homePage(request):
     if request.method == 'POST':
@@ -32,8 +30,7 @@ def customerwelcome(request):
         return redirect(homePage)
 
     username = request.user.username
-    context = {'username': username,
-               'hotels': VaccineCenterDetails.objects.all()}
+    context = {'username': username, 'hotels': VaccineCenterDetails.objects.all()}
     return render(request, 'customerwelcome.html', context)
 
 
@@ -61,13 +58,11 @@ def signupuser(request):
     # checking various conditions before signing up the user
     if password == repass:
         if User.objects.filter(username=username).exists():
-            messages.add_message(request, messages.ERROR,
-                                 "User already exists")
+            messages.add_message(request, messages.ERROR, "User already exists")
             return redirect(homePage)
 
         User.objects.create_user(username=username, password=password).save()
-        messages.add_message(request, messages.SUCCESS,
-                             "User Successfully created")
+        messages.add_message(request, messages.SUCCESS, "User Successfully created")
 
     else:
         messages.add_message(request, messages.ERROR, "Password do not match")
@@ -91,7 +86,6 @@ def book(request, bookp):
     context = {'vaccineid': vaccineid, 'username': username}
     return render(request, "form.html", context)
 
-
 def bookingdone(request):
     username = request.user.username
     print(username)
@@ -109,26 +103,25 @@ def bookingdone(request):
                          'Vaccine Booked Successfully')
     return redirect(customerwelcome)
 
-
 def userbooking(request):
     # getting the booking database of the particular user
-    bookings = BookingDetails.objects.filter(username=request.user.username)
+    bookings = BookingDetails.objects.filter(username = request.user.username)
     # info = VaccineDetails.objects.filter(Vaccine_ID = bookings.vaccine)  # diff bw get and filter?
     # vaccineid = info.Vaccine_ID
     # info = BookingDetails.objects.get(username = request.user.username) # getting the booking database of the particular user
-    for i in range(len(bookings)):
-        print(bookings[i].vaccine)
-
+    ids = []
+    names = []
     for i in range(len(bookings)):
         a = VaccineDetails.objects.filter(Vaccine_ID = bookings[i].vaccine)
-        print(type(a))
-        print(a[0].Vaccine_ID)
-        ids = a[0].Vaccine_ID
+        # print(type(a))
+        print(a[0].type_of_vaccine)
+        ids.append(a[0].Vaccine_ID)
+        names.append(a[0].type_of_vaccine)
 
-    context = {'bookings': bookings}
+    data = zip(ids, bookings, names)
+    context = {'data': data}
 
     return render(request, 'userbooking.html', context)
-
 
 def search(request):
     pincode = request.POST['pincode']
@@ -139,10 +132,8 @@ def search(request):
 
 
 def cancel(request, bookid):
-    messages.add_message(request, messages.SUCCESS,
-                         "Booking successfully cancelled")
-    bookings = BookingDetails.objects.filter(
-        username=request.user.username, id=bookid)
+    messages.add_message(request, messages.SUCCESS, "Booking successfully cancelled")
+    bookings = BookingDetails.objects.filter( username=request.user.username, id = bookid)
     # print(bookings[0])
     vaccinenum = bookings[0].vaccine
 
@@ -154,8 +145,13 @@ def cancel(request, bookid):
     return redirect(userbooking)
 
 
-def pdf(request):
+def pdf(request, vaccineid):
     username = request.user.username
+    bookings = BookingDetails.objects.filter(username = request.user.username)
+    details = VaccineDetails.objects.filter(Vaccine_ID = vaccineid)
+    print(details[0].Vaccine_ID)
+    # context = {'data': data}
+    
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
     # context = {'vaccineDet':VaccineCenterDetails.objects.all()}
@@ -167,21 +163,28 @@ def pdf(request):
     p = canvas.Canvas(buffer)
 
     # See the ReportLab documentation for the full list of functionality.
-    p.setFont('Helvetica-Bold', 20)
+    p.setFont('Helvetica-Bold', 18)
     # for context in contexts:
     #     p.drawString(100, 600, context.Center_Id)
 
     # p.setStrokeColor(red)
     p.setFillColor(green)
-    p.drawString(100, 800, "CONGRATULATIONS " + username +
-                 ", YOU ARE VACCINATED!")  # why not commma
+    p.drawString(60, 800, "CONGRATULATIONS " + username + ", YOU ARE VACCINATED!") # why not commma
+    p.setFillColor(black)
+    p.setFont('Helvetica-Bold', 14)
+
+    p.drawString(70, 730, "Vaccine ID: " + str(details[0].Vaccine_ID))
+    p.drawString(70, 700, "Vaccine Name: " + str(details[0]))
+    p.drawString(70, 670, "Aadhar Number: " + str(bookings[0].aadhar))
+    p.drawString(70, 640, "Name of Person: " + str(bookings[0].name))
+    p.drawString(70, 610, "Date of vaccination: " + str(bookings[0].date))
+
     # Close the PDF object cleanly, and we're done.
-    p.drawImage(img, 150, 200, width=320,
-                preserveAspectRatio=True, mask='auto')
+    p.drawImage(img, 350, 250, width = 200, preserveAspectRatio = True, mask = 'auto')
 
     p.showPage()
     p.save()
 
     # FileResponse sets the Content-Disposition header so that browsers present the option to save the file.
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='Vaccination.pdf')
+    return FileResponse(buffer, as_attachment=True, filename = 'Vaccination_Certificate.pdf')

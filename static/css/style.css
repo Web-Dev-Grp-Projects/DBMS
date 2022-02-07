@@ -231,7 +231,7 @@ header {
 }
 
 .logout:hover {
-  background-color: red;
+  background-color: rgb(224, 35, 35);
 }
 
 .logout {
@@ -239,7 +239,14 @@ header {
   color: white;
 }
 
+.booking:hover {
+  background-color: green;
+}
 
+.booking {
+  background-color: transparent;
+  color: white;
+}
 
 .center {
   position: absolute;
