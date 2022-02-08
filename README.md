@@ -45,3 +45,7 @@ The website is also deployed onto the Heroku server through which people all ove
 * Pillow (Python Imaging Library)
 * Three.js (3D library for Frontend)
 * Reportlab (For generating PDF certificates for user)
+
+## Authors
+* Aditya Goel
+* Sanskar Chandra
