@@ -4,6 +4,8 @@
 <p>Website along with the PostgreSQL database. The HomePage of the website is <b>3D</b>. The position of the globe changes based on the scroll position of the user. People can open our website and can register themselves with the help of their username. After logging in, the person browse through all the available vaccination centers and can also see the available slotes. They can filter by pin code for where they want to get vaccinated.
 The database will contain all the required details of the person and their present vaccination status. After each vaccination, they can download their vaccination certificates also.</p>
 
+[![Stargazers repo roster for @Web-Dev-Grp-Projects/DBMS](https://reporoster.com/stars/Web-Dev-Grp-Projects/DBMS)](https://github.com/Web-Dev-Grp-Projects/DBMS/stargazers)
+
 ## Screenshots of the website
 * HomePage
 
